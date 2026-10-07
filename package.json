@@ -1,0 +1,60 @@
+{
+  "name": "dsh-model-bridge",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Expose every model the DeepSeek Harness can already call as a loopback OpenAI/Anthropic-compatible gateway, so other local dev tools can use them. 把 DSH 能调用的所有模型开放成本机 OpenAI / Anthropic 兼容网关，供其他开发软件使用。",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "README.md",
+    "README.en.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "openai-compatible",
+    "anthropic-compatible",
+    "gateway",
+    "local-llm-proxy"
+  ],
+  "scripts": {
+    "test": "node test/test.mjs && node test/test-toolcalls.mjs && node test/test-settings.mjs && node test/test-client.mjs",
+    "verify:mount": "node tools/verify-mount.mjs",
+    "verify:smoke": "node tools/smoke-mount.mjs",
+    "verify:fix": "node tools/verify-fix-proves.mjs",
+    "verify:all": "npm run test && npm run verify:smoke && npm run verify:fix",
+    "check:live": "node tools/check-live.mjs"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": []
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "*"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/cordis": {
+      "optional": true
+    }
+  },
+  "license": "MIT"
+}

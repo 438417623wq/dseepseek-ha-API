@@ -1,0 +1,14 @@
+# Dependencies (this plugin has none at runtime; peer deps come from the host)
+node_modules/
+
+# Local runtime state — never publish a gateway key or a model allow-list
+key
+settings.json
+*.key
+
+# Editor / OS noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log

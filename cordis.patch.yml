@@ -1,0 +1,12 @@
+# dsh-model-bridge bundle patch.
+#
+# One insert row is the whole host-side mount: the loader composes the profile
+# tree from each bundle's patch, and `name` resolves from the profile's
+# node_modules. The id is what a later patch layer addresses this row by.
+#
+# No config is declared here on purpose: the plugin's own defaults
+# (127.0.0.1:8791, key at ~/.dsh/model-bridge/key) are the intended ones, and a
+# row-level config would replace, not merge, whatever a user set.
+- insert:
+    - id: model-bridge
+      name: 'dsh-model-bridge'
